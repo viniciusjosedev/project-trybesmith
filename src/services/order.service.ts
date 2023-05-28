@@ -1,5 +1,6 @@
-import OrderModel from 'src/database/models/order.model';
-import { Order } from 'src/types/Order';
+import ProductModel from '../database/models/product.model';
+import { Order } from '../types/Order';
+import OrderModel from '../database/models/order.model';
 import sequelize from '../database/models';
 
 const createOrder = async (data: Order): Promise<Order> => 
@@ -9,6 +10,19 @@ const createOrder = async (data: Order): Promise<Order> =>
     return result.dataValues;
   });
 
+const getAllOrders = async (): Promise<Order[]> => {
+  const result = await OrderModel.findAll({ include: { 
+    model: ProductModel, 
+    as: 'productIds',
+    attributes: ['id'],
+  } });
+
+  return result.map((e) => e.dataValues);
+};
+
+getAllOrders();
+
 export default {
   createOrder,
+  getAllOrders,
 };
