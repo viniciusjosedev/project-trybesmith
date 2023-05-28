@@ -5,7 +5,7 @@ import Order from './order.model';
 import User from './user.model';
 
 export type ProductInputtableTypes = Optional<Product, 'id'>;
-export type ProductSequelizeModelCreator = ModelDefined<Product, ProductInputtableTypes>;
+type ProductSequelizeModelCreator = ModelDefined<Product, ProductInputtableTypes>;
 export type ProductSequelizeModel = Model<Product, ProductInputtableTypes>;
 
 const ProductModel: ProductSequelizeModelCreator = db.define('Product', {

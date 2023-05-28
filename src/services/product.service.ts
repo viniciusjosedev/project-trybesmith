@@ -9,6 +9,13 @@ const createProduct = async (data: Product): Promise<Product> =>
     return result.dataValues;
   });
 
+const getAllProducts = async (): Promise<Product[]> => {
+  const result = await ProductModel.findAll();
+
+  return result.map((e) => e.dataValues);
+};
+
 export default {
   createProduct,
+  getAllProducts,
 };

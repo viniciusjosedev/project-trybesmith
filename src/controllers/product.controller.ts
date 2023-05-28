@@ -20,6 +20,15 @@ const createProduct = async (req: Request, res: Response): Promise<Response> => 
   }
 };
 
+const getAllProducts = async (req: Request, res: Response): Promise<Response> => {
+  try {
+    return res.status(200).json(await productService.getAllProducts());
+  } catch (error) {
+    return res.status(500).json({ message: 'ERROR INTERNAL' });
+  }
+};
+
 export default {
   createProduct,
+  getAllProducts,
 };
