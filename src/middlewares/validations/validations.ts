@@ -7,7 +7,12 @@ type DataLogin = {
 
 type ReturnLogin = {
   type: string | undefined,
-  message?: string
+  message?: string,
+};
+
+type DataCreateProduct = {
+  name: string,
+  price: string,
 };
 
 const MESSAGE = '"username" and "password" are required';
@@ -24,6 +29,17 @@ const userLoginValidate = (data: DataLogin): ReturnLogin => {
   };
 };
 
+const productCreateBodyValidate = (data: DataCreateProduct): ReturnLogin => {
+  const { error } = schema.productCreateBodySchema.validate(data);
+
+  if (error) {
+    return { type: 'ERROR', message: error.message };
+  }
+
+  return { type: undefined };
+};
+
 export default {
   userLoginValidate,
+  productCreateBodyValidate,
 };
