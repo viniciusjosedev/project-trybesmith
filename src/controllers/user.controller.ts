@@ -20,7 +20,7 @@ const login = async (req: Request, res: Response) => {
       username: result.username,
     };
 
-    const token = generateToken(data);
+    const token = generateToken({ data });
 
     return res.status(200).json({ token });
   }

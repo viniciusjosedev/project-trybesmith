@@ -10,7 +10,13 @@ const productCreateBodySchema: ObjectSchema = Joi.object({
   price: Joi.string().min(3).required(),
 });
 
+const orderCreateBodySchema: ObjectSchema = Joi.object({
+  productIds: Joi.array().items(Joi.number().required()).required(),
+  userId: Joi.number().min(1).required(),
+});
+
 export default {
   userLoginSchema,
   productCreateBodySchema,
+  orderCreateBodySchema,
 };

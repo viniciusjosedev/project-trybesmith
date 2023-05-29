@@ -15,7 +15,14 @@ const getAllProducts = async (): Promise<Product[]> => {
   return result.map((e) => e.dataValues);
 };
 
+const updateProduct = async (id: number, orderId: number): Promise<number> => {
+  const result = await ProductModel.update({ orderId }, { where: { id } });
+
+  return result[0];
+};
+
 export default {
   createProduct,
   getAllProducts,
+  updateProduct,
 };

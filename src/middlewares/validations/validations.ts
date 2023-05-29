@@ -15,6 +15,11 @@ type DataCreateProduct = {
   price: string,
 };
 
+type DataCreateOrder = {
+  productIds: number[],
+  userId: number,
+};
+
 const MESSAGE = '"username" and "password" are required';
 
 const userLoginValidate = (data: DataLogin): ReturnLogin => {
@@ -39,7 +44,18 @@ const productCreateBodyValidate = (data: DataCreateProduct): ReturnLogin => {
   return { type: undefined };
 };
 
+const orderCreateBodyValidate = (data: DataCreateOrder): ReturnLogin => {
+  const { error } = schema.orderCreateBodySchema.validate(data);
+
+  if (error) {
+    return { type: 'ERROR', message: error.message };
+  }
+
+  return { type: undefined };
+}; 
+
 export default {
   userLoginValidate,
   productCreateBodyValidate,
+  orderCreateBodyValidate,
 };
