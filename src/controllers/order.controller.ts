@@ -30,12 +30,10 @@ const getAllOrders = async (req: Request, res: Response): Promise<Response> => {
       const data = e.productIds.map((x) => x.id);
       config = {
         productIds: data.sort(),
+        id: orders[i].id,
+        userId: orders[i].userId,
       };
     }
-    config = {
-      id: orders[i].id,
-      userId: orders[i].userId,
-    };
     return config;
   });
 
